@@ -1,6 +1,6 @@
 export interface ILoginForm {
-    mailIcon: string; 
-    passwordIcon: string;
+  mailIcon: string;
+  passwordIcon: string;
 }
 
 export interface User {

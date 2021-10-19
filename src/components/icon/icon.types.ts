@@ -1,6 +1,6 @@
-import { StyleProp, ViewStyle } from 'react-native';
+import {StyleProp, ViewStyle} from 'react-native';
 
-import { TIconNames } from './';
+import {TIconNames} from './';
 
 export interface IIconSVGProps {
   type: TIconNames;
