@@ -9,7 +9,6 @@ import {PICTURES} from './src/constants/pitures';
 
 const App = () => {
   const {isLogin, tabHandler} = useAppState();
-
   return (
     <SafeAreaView>
       <StatusBar barStyle="light-content" />
@@ -18,10 +17,7 @@ const App = () => {
 
         <Tabs isLogin={isLogin} selectTab={tabHandler} />
 
-        <LoginForm
-          mailIcon={PICTURES.mailIcon}
-          passwordIcon={PICTURES.viewIcon}
-        />
+        <LoginForm />
 
         <View>
           <Text>or login with</Text>

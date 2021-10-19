@@ -1,11 +1,9 @@
-import React, {FC, useState} from 'react';
+import React, {useState} from 'react';
 import {View, Button} from 'react-native';
-import {ILoginForm, User} from './loginForm.types';
+import {User} from './loginForm.types';
 import {Input} from '../input';
 
-export const LoginForm: FC<ILoginForm> = props => {
-  const {mailIcon, passwordIcon} = props;
-
+export const LoginForm = () => {
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
   const createUser = (config: User): {email: string; password: string} => {
@@ -25,14 +23,14 @@ export const LoginForm: FC<ILoginForm> = props => {
         onChangeText={onChangeEmail}
         value={email}
         placeholder="Enter your email"
-        icon={mailIcon}
+        type={'mail'}
         isSecure={false}
       />
       <Input
         onChangeText={onChangePassword}
         value={password}
         placeholder="Enter your password"
-        icon={passwordIcon}
+        type={'eye'}
         isSecure={true}
       />
       <Button color="#841584" onPress={login} title="LOGIN" />

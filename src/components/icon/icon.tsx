@@ -6,11 +6,11 @@ import {IIconSVGProps} from './icon.types';
 export type TIconNames = keyof typeof ICONS;
 
 export const IconSVG: FC<IIconSVGProps> = props => {
-  const {type, size, style, onPress} = props;
+  const {type, size, style, onPress, color} = props;
 
   const Icon = ICONS[type];
 
-  console.log(ICONS);
+  console.log(Icon);
 
   const IconProps = Icon({})?.props;
 
@@ -29,7 +29,7 @@ export const IconSVG: FC<IIconSVGProps> = props => {
         },
         style,
       ]}>
-      <Icon height={iconHeight} width={iconWidth} />
+      <Icon height={iconHeight} width={iconWidth} fill={color ?? '#000'} />
     </Styled.Wrapper>
   );
 };
