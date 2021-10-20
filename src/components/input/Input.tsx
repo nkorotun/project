@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {FC} from 'react';
 import {IInput} from './Input.types';
 import {InputStyles as Styled} from './Input.styles';

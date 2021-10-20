@@ -10,8 +10,6 @@ export const IconSVG: FC<IIconSVGProps> = props => {
 
   const Icon = ICONS[type];
 
-  console.log(Icon);
-
   const IconProps = Icon({})?.props;
 
   const iconHeight = size ?? IconProps.height;

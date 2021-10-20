@@ -11,7 +11,7 @@ export const Tabs: FC<ITabs> = props => {
         <Styled.Text>Login</Styled.Text>
       </Styled.Tab>
 
-      <Styled.Tab onPress={selectTab} disabled={isLogin}>
+      <Styled.Tab onPress={selectTab} disabled={!isLogin}>
         <Styled.Text>Sign Up</Styled.Text>
       </Styled.Tab>
     </Styled.Container>

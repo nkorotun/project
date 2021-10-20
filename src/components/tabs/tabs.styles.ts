@@ -1,16 +1,19 @@
 import {StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
+import {BORDERS} from '../../constants/borders';
+import {COLORS} from '../../constants/colors';
 
 export const TabsStyles = {
   Container: styled.View`
     height: 60px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 20px;
     align-items: stretch;
-    background-color: #fff;
-    border-color: #841584;
-    border-bottom: 3px;
+    background-color: ${COLORS.white};
+    border-color: ${COLORS.white};
+    border-bottom-width: ${BORDERS.width};
   `,
   Tab: styled.View`
     display: flex;
@@ -22,7 +25,7 @@ export const TabsStyles = {
 
 export const styles = StyleSheet.create({
   shadows: {
-    shadowColor: '#000',
+    shadowColor: COLORS.black,
     shadowOffset: {
       width: 4,
       height: 4,
@@ -31,5 +34,8 @@ export const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
+  },
+  borderBottom: {
+    borderColor: COLORS.purple,
   },
 });
