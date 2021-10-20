@@ -1,24 +1,19 @@
-import React, { FC, useState } from 'react'
-import { View, Text } from 'react-native'
-import { ITabs } from './tabs.types'
-import { TabsStyles as Styled } from './tabs.styles'
+import React, {FC} from 'react';
+import {ITabs} from './tabs.types';
+import {TabsStyles as Styled, styles} from './tabs.styles';
 
-export const Tabs:FC<ITabs> = (props) => {
+export const Tabs: FC<ITabs> = props => {
+  const {isLogin, selectTab} = props;
 
-    const { isLogin, selectTab } = props;
+  return (
+    <Styled.Container style={styles.shadows}>
+      <Styled.Tab onPress={selectTab} disabled={isLogin}>
+        <Styled.Text>Login</Styled.Text>
+      </Styled.Tab>
 
-    return (
-
-        <Styled.Container>
-            <Styled.Tab onPress={selectTab} disabled={isLogin}>
-               <Styled.Text>Login</Styled.Text>
-            </Styled.Tab>
-
-            <Styled.Tab onPress={selectTab} disabled={isLogin}>
-               <Styled.Text>Sign Up</Styled.Text>
-            </Styled.Tab>
-        </Styled.Container>
-    )
-}
-
-
+      <Styled.Tab onPress={selectTab} disabled={!isLogin}>
+        <Styled.Text>Sign Up</Styled.Text>
+      </Styled.Tab>
+    </Styled.Container>
+  );
+};

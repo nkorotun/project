@@ -1,6 +1,5 @@
-import { StyleProp, ViewStyle } from 'react-native';
-
-import { TIconNames } from './';
+import {StyleProp, ViewStyle} from 'react-native';
+import {TIconNames} from './icon';
 
 export interface IIconSVGProps {
   type: TIconNames;
@@ -9,4 +8,5 @@ export interface IIconSVGProps {
   height?: number;
   style?: StyleProp<ViewStyle>;
   onPress?: () => void;
+  color?: string;
 }

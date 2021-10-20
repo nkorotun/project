@@ -1,14 +1,15 @@
-import React, { FC } from 'react';
-import { ICONS } from './icon.constants';
-import { IconStyles as Styled } from './icon.styles';
-import { IIconSVGProps } from './icon.types';
+import React, {FC} from 'react';
+import {ICONS} from './icon.constants';
+import {IconStyles as Styled} from './icon.styles';
+import {IIconSVGProps} from './icon.types';
 
 export type TIconNames = keyof typeof ICONS;
 
-export const IconSVG: FC<IIconSVGProps> = (props) => {
-  const { type, size, style, onPress } = props;
+export const IconSVG: FC<IIconSVGProps> = props => {
+  const {type, size, style, onPress, color} = props;
 
   const Icon = ICONS[type];
+
   const IconProps = Icon({})?.props;
 
   const iconHeight = size ?? IconProps.height;
@@ -17,7 +18,7 @@ export const IconSVG: FC<IIconSVGProps> = (props) => {
   return (
     <Styled.Wrapper
       onPress={onPress}
-      hitSlop={{ bottom: 15, left: 15, right: 15, top: 15 }}
+      hitSlop={{bottom: 15, left: 15, right: 15, top: 15}}
       activeOpacity={onPress ? 0.7 : 1}
       style={[
         {
@@ -25,12 +26,8 @@ export const IconSVG: FC<IIconSVGProps> = (props) => {
           width: iconWidth,
         },
         style,
-      ]}
-    >
-      <Icon
-        height={iconHeight}
-        width={iconWidth}
-      />
+      ]}>
+      <Icon height={iconHeight} width={iconWidth} fill={color ?? '#000'} />
     </Styled.Wrapper>
   );
 };

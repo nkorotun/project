@@ -1,21 +1,11 @@
-import eye from './../../assets/icons/eye.svg';
-import mail from './../../assets/icons/mail.svg';
+import eye from '../../assets/icons/eye.svg';
+import mail from '../../assets/icons/mail.svg';
+import test from '../../assets/icons/test.svg';
 
-export const ILLUSTRATIONS = {
-};
+export type TIconsName = keyof typeof ICONS;
 
-export const MOODS = {
-};
-
-export const MOODS_ACTIVE = {
-};
-
-export const ICONS = {
+export const ICONS: {[key: string]: any} = {
   eye,
   mail,
-  ...ILLUSTRATIONS,
-  ...MOODS_ACTIVE,
-  ...MOODS,
+  test,
 };
-
-export type TIllustrationNames = keyof typeof ILLUSTRATIONS;
