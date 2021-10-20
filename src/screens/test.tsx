@@ -1,13 +1,18 @@
 import React from 'react';
 import {Text, Button, View} from 'react-native';
-import {SET_LOGIN} from '../redux/actions';
-import {store} from '../redux/store';
+import {useDispatch} from 'react-redux';
+import {logOut} from '../redux/reducers';
 
 export const Test = () => {
+  const dispatch = useDispatch();
+  const exit = () => {
+    dispatch(logOut());
+  };
+
   return (
     <View>
       <Text>Test Screen</Text>
-      <Button title="Exit" onPress={() => store.dispatch({type: SET_LOGIN, payload: 'Exit'})} />
+      <Button title="Exit" onPress={exit} />
     </View>
   );
 };

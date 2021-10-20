@@ -11,15 +11,13 @@ export const TabsStyles = {
     justify-content: space-between;
     padding: 0 20px;
     align-items: stretch;
-    background-color: ${COLORS.white};
-    border-color: ${COLORS.white};
-    border-bottom-width: ${BORDERS.width};
   `,
-  Tab: styled.View`
+  Tab: styled.TouchableOpacity`
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: ${COLORS.white};
   `,
   Text: styled.Text``,
 };
@@ -36,7 +34,12 @@ export const styles = StyleSheet.create({
 
     elevation: 5,
   },
-  borderBottom: {
+  borderActive: {
     borderColor: COLORS.purple,
+    borderBottomWidth: BORDERS.width,
+  },
+  borderDisable: {
+    borderColor: COLORS.white,
+    borderBottomWidth: BORDERS.width,
   },
 });

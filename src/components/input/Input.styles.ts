@@ -1,10 +1,11 @@
 import styled from 'styled-components/native';
+import {StyleSheet} from 'react-native';
 import {BORDERS} from '../../constants/borders';
 import {COLORS} from '../../constants/colors';
 
 export const InputStyles = {
   Input: styled.TextInput`
-    max-width: 90%;
+    width: 90%;
     overflow: hidden;
   `,
   InputWrapper: styled.View`
@@ -18,7 +19,15 @@ export const InputStyles = {
     margin: 10px 25px;
     border-width: ${BORDERS.width};
     border-radius: ${BORDERS.radius};
-    border-color: ${COLORS.gray};
     background-color: ${COLORS.white};
   `,
 };
+
+export const styles = StyleSheet.create({
+  default: {
+    borderColor: COLORS.gray,
+  },
+  error: {
+    borderColor: COLORS.red,
+  },
+});

@@ -1,25 +1,52 @@
-import {SET_USER_MAIL, SET_USER_PASSWORD, SET_LOGIN} from '../actions';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 const initialState = {
+  mode: 'login',
   mail: '',
   password: '',
-  auth: 'Exit',
+  confirmPassword: '',
+  token: '',
+  inputError: false,
 };
 
-function loginReducer(
-  state = initialState,
-  action: {type: string; payload: string},
-) {
-  switch (action.type) {
-    case SET_USER_MAIL:
-      return {...state, mail: action.payload};
-    case SET_USER_PASSWORD:
-      return {...state, password: action.payload};
-    case SET_LOGIN:
-      return {...state, auth: action.payload};
-    default:
-      return state;
-  }
-}
+export const authSlice = createSlice({
+  name: 'auth',
+  initialState,
+  reducers: {
+    setUserEmail: (state, {payload}: PayloadAction<string>) => {
+      state.mail = payload;
+    },
+    setUserPassword: (state, {payload}: PayloadAction<string>) => {
+      state.password = payload;
+    },
+    setUserConfirmPassword: (state, {payload}: PayloadAction<string>) => {
+      state.confirmPassword = payload;
+    },
+    setToken: (state, {payload}: PayloadAction<string>) => {
+      state.token = payload;
+    },
+    logOut: () => initialState,
+    changeMode: (state, {payload}: PayloadAction<string>) => {
+      return {...initialState, mode: payload};
+    },
+    addError: state => {
+      state.inputError = true;
+    },
+    removeError: state => {
+      state.inputError = false;
+    },
+  },
+});
 
-export default loginReducer;
+export const {
+  setUserEmail,
+  setUserPassword,
+  setUserConfirmPassword,
+  setToken,
+  logOut,
+  changeMode,
+  addError,
+  removeError,
+} = authSlice.actions;
+
+export default authSlice.reducer;
