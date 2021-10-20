@@ -16,6 +16,7 @@ export const TabsStyles = {
     border-bottom-width: ${BORDERS.width};
   `,
   Tab: styled.View`
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
