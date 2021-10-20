@@ -26,9 +26,10 @@ export const authSlice = createSlice({
       state.token = payload;
     },
     logOut: () => initialState,
-    changeMode: (state, {payload}: PayloadAction<string>) => {
-      return {...initialState, mode: payload};
-    },
+    changeMode: (state, {payload}: PayloadAction<string>) => ({
+      ...initialState,
+      mode: payload,
+    }),
     addError: state => {
       state.inputError = true;
     },
