@@ -1026,7 +1026,7 @@
     "@types/yargs" "^16.0.0"
     "chalk" "^4.0.0"
 
-"@react-native-async-storage/async-storage@react-native-async-storage/async-storage":
+"@react-native-async-storage/async-storage@github:react-native-async-storage/async-storage":
   "resolved" "git+ssh://git@github.com/react-native-async-storage/async-storage.git#8dfd16d48e217ad366a144d6249fb39537384c3f"
   "version" "1.13.0"
   dependencies:
