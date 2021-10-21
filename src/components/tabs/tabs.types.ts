@@ -1,4 +1,4 @@
 export interface ITabs {
-  isLogin: boolean;
-  selectTab: () => void;
+  selectedMode: string;
+  onChangeTab: (value: string) => void;
 }
