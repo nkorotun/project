@@ -5,6 +5,7 @@ export interface IInput {
   value: string;
   isSecure?: boolean;
   onChangeText: (value: string) => void;
+  onBlur?: () => void;
   type: TIconNames;
   hasError?: boolean;
 }

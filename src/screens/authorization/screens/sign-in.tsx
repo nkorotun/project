@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, View} from 'react-native';
+import {Button, Text, View} from 'react-native';
 import {Input} from '../../../components/input';
 import {RootState} from '../../../redux/store';
 import {useSelector} from 'react-redux';
@@ -9,7 +9,6 @@ export const SignIn = ({navigation}) => {
   const {mail, password, inputError} = useSelector(
     (state: RootState) => state.auth,
   );
-
   const {changeMail, changePassword, login} = useAuthState();
 
   return (
@@ -29,7 +28,7 @@ export const SignIn = ({navigation}) => {
         isSecure={true}
         hasError={inputError}
       />
-      <Button title="Login" onPress={() => login()} />
+      <Button title="Login" onPress={login} />
     </View>
   );
 };

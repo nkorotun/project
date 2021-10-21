@@ -38,7 +38,7 @@ export const SignUp = ({navigation}) => {
         isSecure={true}
         hasError={inputError}
       />
-      <Button title="Register" onPress={() => login()} />
+      <Button title="Register" onPress={login} />
     </View>
   );
 };

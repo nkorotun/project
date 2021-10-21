@@ -5,13 +5,14 @@ import {IconSVG} from '../icon/icon';
 import {COLORS} from '../../constants/colors';
 
 export const Input: FC<IInput> = props => {
-  const {placeholder, value, isSecure, onChangeText, type, hasError} = props;
+  const {onBlur, placeholder, value, isSecure, onChangeText, type, hasError} = props;
 
   return (
     <Styled.InputWrapper hasError={hasError}>
       <Styled.Input
-        onChangeText={onChangeText}
+        onBlur={onBlur}
         value={value}
+        onChangeText={onChangeText}
         placeholder={placeholder}
         secureTextEntry={isSecure}
       />
