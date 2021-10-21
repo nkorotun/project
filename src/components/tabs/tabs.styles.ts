@@ -6,10 +6,10 @@ import {COLORS} from '../../constants/colors';
 export const TabsStyles = {
   Container: styled.View`
     height: 60px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0 20px;
     align-items: stretch;
   `,
   Tab: styled.TouchableOpacity<{selected: true | false}>`

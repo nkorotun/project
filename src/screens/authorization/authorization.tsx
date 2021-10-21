@@ -1,6 +1,5 @@
 import React from 'react';
-import {Button, View} from 'react-native';
-import {Input} from '../../components/input';
+import {SafeAreaView} from 'react-native';
 import {Tabs} from '../../components/tabs';
 import {RootState} from '../../redux/store';
 import {PICTURES} from '../../constants/pictures';
@@ -9,65 +8,29 @@ import {useAuthState} from './authorization.state';
 import {AuthStyles as Styled} from './authorization.styles';
 import {AUTH_MODE} from '../../constants/auth';
 
-export const Auth = () => {
-  const {mail, password, confirmPassword, mode, inputError} = useSelector(
-    (state: RootState) => state.auth,
-  );
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {SignIn} from './screens/sign-in';
+import {SignUp} from './screens/sign-up';
+import { SCREENS } from '../../constants/screens';
 
-  const {changeConfirmPassword, changeMail, changePassword, selectTab} =
-    useAuthState();
+export const Auth = ({navigation}) => {
+  const Stack = createNativeStackNavigator();
+
+  const {mode} = useSelector((state: RootState) => state.auth);
+
+  const {selectTab} = useAuthState();
 
   return (
-    <View>
+    <SafeAreaView>
       <Styled.Logo source={PICTURES.logoIcon} />
       <Tabs selectedMode={mode} onChangeTab={selectTab} />
-      {mode === AUTH_MODE.LOGIN ? (
-        <View>
-          <Input
-            placeholder="Enter email"
-            onChangeText={changeMail}
-            type={'mail'}
-            value={mail}
-            hasError={false}
-          />
-          <Input
-            placeholder="Enter password"
-            onChangeText={changePassword}
-            type={'eye'}
-            value={password}
-            isSecure={true}
-            hasError={inputError}
-          />
-          <Button title="Login" onPress={() => {}} />
-        </View>
-      ) : (
-        <View>
-          <Input
-            placeholder="Enter email"
-            onChangeText={changeMail}
-            type={'mail'}
-            value={mail}
-            hasError={false}
-          />
-          <Input
-            placeholder="Enter password"
-            onChangeText={changePassword}
-            type={'eye'}
-            value={password}
-            isSecure={true}
-            hasError={inputError}
-          />
-          <Input
-            placeholder="Confirm password"
-            onChangeText={changeConfirmPassword}
-            type={'eye'}
-            value={confirmPassword}
-            isSecure={true}
-            hasError={inputError}
-          />
-          <Button title="Register" onPress={() => {}} />
-        </View>
-      )}
-    </View>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        {mode === AUTH_MODE.LOGIN ? (
+          <Stack.Screen name={SCREENS.signIn} component={SignIn} />
+        ) : (
+          <Stack.Screen name={SCREENS.signUp} component={SignUp} />
+        )}
+      </Stack.Navigator>
+    </SafeAreaView>
   );
 };
