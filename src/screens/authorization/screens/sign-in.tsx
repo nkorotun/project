@@ -6,7 +6,7 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {signInSchema} from './form-schemas';
 import {ControllerInput} from '../../../components/input-controller/input-controller';
 
-export const SignIn = ({navigation}) => {
+export const SignIn = () => {
   const {login} = useAuthState();
 
   const {
@@ -15,7 +15,7 @@ export const SignIn = ({navigation}) => {
     formState: {errors},
   } = useForm({resolver: yupResolver(signInSchema)});
 
-  const onSubmit = data => {
+  const onSubmit = () => {
     login();
   };
 
