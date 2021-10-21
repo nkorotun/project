@@ -1,44 +1,52 @@
 import React from 'react';
 import {Button, View} from 'react-native';
-import {Input} from '../../../components/input';
-import {RootState} from '../../../redux/store';
-import {useSelector} from 'react-redux';
-import {useAuthState} from '.././authorization.state';
+import {useAuthState} from './../authorization.state';
+import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+
+import {signUpSchema} from './form-schemas';
+import {ControllerInput} from '../../../components/input-controller/input-controller';
 
 export const SignUp = ({navigation}) => {
-  const {mail, password, confirmPassword, inputError} = useSelector(
-    (state: RootState) => state.auth,
-  );
+  const {register} = useAuthState();
 
-  const {changeConfirmPassword, changeMail, changePassword, login} =
-    useAuthState();
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm({resolver: yupResolver(signUpSchema)});
+
+  const onSubmit = data => {
+    register();
+  };
 
   return (
     <View>
-      <Input
+      <ControllerInput
+        control={control}
+        errors={errors}
+        name="email"
         placeholder="Enter email"
-        onChangeText={changeMail}
-        type={'mail'}
-        value={mail}
-        hasError={false}
+        type="mail"
       />
-      <Input
+      <ControllerInput
+        control={control}
+        errors={errors}
+        name="password"
         placeholder="Enter password"
-        onChangeText={changePassword}
-        type={'eye'}
-        value={password}
+        type="eye"
         isSecure={true}
-        hasError={inputError}
       />
-      <Input
+      <ControllerInput
+        control={control}
+        errors={errors}
+        name="confirmPassword"
         placeholder="Confirm password"
-        onChangeText={changeConfirmPassword}
-        type={'eye'}
-        value={confirmPassword}
+        type="eye"
         isSecure={true}
-        hasError={inputError}
       />
-      <Button title="Register" onPress={login} />
+
+      <Button title="Register" onPress={handleSubmit(onSubmit)} />
     </View>
   );
 };
