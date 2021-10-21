@@ -1,8 +1,9 @@
 import React from 'react';
-import {Button, View} from 'react-native';
+import {View} from 'react-native';
 import {useAuthState} from './../authorization.state';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
+import {Button} from '../../../components/button';
 
 import {signUpSchema} from './form-schemas';
 import {ControllerInput} from '../../../components/input-controller/input-controller';

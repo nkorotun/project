@@ -1,10 +1,11 @@
 import React from 'react';
-import {Button, View} from 'react-native';
+import {View} from 'react-native';
 import {useAuthState} from './../authorization.state';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {signInSchema} from './form-schemas';
 import {ControllerInput} from '../../../components/input-controller/input-controller';
+import {Button} from '../../../components/button';
 
 export const SignIn = () => {
   const {login} = useAuthState();
@@ -36,7 +37,6 @@ export const SignIn = () => {
         type="eye"
         isSecure={true}
       />
-
       <Button title="Login" onPress={handleSubmit(onSubmit)} />
     </View>
   );
