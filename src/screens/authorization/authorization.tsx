@@ -17,14 +17,10 @@ export const Auth = () => {
   const {changeConfirmPassword, changeMail, changePassword, selectTab} =
     useAuthState();
 
-  const handleChangeTab = (newMode: string) => {
-    selectTab(newMode, mode);
-  };
-
   return (
     <View>
       <Styled.Logo source={PICTURES.logoIcon} />
-      <Tabs selectedMode={mode} onChangeTab={handleChangeTab} />
+      <Tabs selectedMode={mode} onChangeTab={selectTab} />
       {mode === AUTH_MODE.LOGIN ? (
         <View>
           <Input
