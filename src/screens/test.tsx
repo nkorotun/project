@@ -1,18 +1,14 @@
 import React from 'react';
-import {Text, Button, View} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {logOut} from '../redux/reducers';
+import {Text, Button, SafeAreaView} from 'react-native';
+import {useTestState} from './test.state';
 
-export const Test = () => {
-  const dispatch = useDispatch();
-  const exit = () => {
-    dispatch(logOut());
-  };
+export const Test = ({navigation}) => {
+  const {exit} = useTestState();
 
   return (
-    <View>
+    <SafeAreaView>
       <Text>Test Screen</Text>
       <Button title="Exit" onPress={exit} />
-    </View>
+    </SafeAreaView>
   );
 };
