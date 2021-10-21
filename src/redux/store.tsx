@@ -8,6 +8,7 @@ const persistConfig = {
   version: 1,
   storage,
 };
+
 const persistReduce = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({

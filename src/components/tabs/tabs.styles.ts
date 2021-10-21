@@ -12,12 +12,15 @@ export const TabsStyles = {
     padding: 0 20px;
     align-items: stretch;
   `,
-  Tab: styled.TouchableOpacity`
+  Tab: styled.TouchableOpacity<{selected: true | false}>`
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: ${COLORS.white};
+    border-bottom-width: ${BORDERS.width}px;
+    ${({selected}) =>
+      `border-color:${selected ? COLORS.purple : COLORS.white};`}
   `,
   Text: styled.Text``,
 };
@@ -33,13 +36,5 @@ export const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
-  },
-  borderActive: {
-    borderColor: COLORS.purple,
-    borderBottomWidth: BORDERS.width,
-  },
-  borderDisable: {
-    borderColor: COLORS.white,
-    borderBottomWidth: BORDERS.width,
   },
 });

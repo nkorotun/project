@@ -1,6 +1,15 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-const initialState = {
+interface IInitialState {
+  mode: string;
+  mail: string;
+  password: string;
+  confirmPassword: string;
+  token: string;
+  inputError: boolean;
+}
+
+const initialState: IInitialState = {
   mode: 'login',
   mail: '',
   password: '',

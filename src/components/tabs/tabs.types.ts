@@ -1,4 +1,4 @@
 export interface ITabs {
   selectedMode: string;
-  changeTab: (value: string) => void;
+  onChangeTab: (value: string) => void;
 }

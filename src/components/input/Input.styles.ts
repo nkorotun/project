@@ -8,7 +8,7 @@ export const InputStyles = {
     width: 90%;
     overflow: hidden;
   `,
-  InputWrapper: styled.View`
+  InputWrapper: styled.View<{hasError: true | false}>`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -17,9 +17,10 @@ export const InputStyles = {
     height: 40px;
     padding: 0 16px;
     margin: 10px 25px;
-    border-width: ${BORDERS.width};
-    border-radius: ${BORDERS.radius};
+    border-width: ${BORDERS.width}px;
+    border-radius: ${BORDERS.radius}px;
     background-color: ${COLORS.white};
+    ${({hasError}) => `border-color:${hasError ? COLORS.red : COLORS.gray};`}
   `,
 };
 

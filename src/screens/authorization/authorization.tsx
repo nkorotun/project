@@ -4,73 +4,28 @@ import {Input} from '../../components/input';
 import {Tabs} from '../../components/tabs';
 import {RootState} from '../../redux/store';
 import {PICTURES} from '../../constants/pictures';
-import {useSelector, useDispatch} from 'react-redux';
-import {
-  changeMode,
-  setToken,
-  setUserEmail,
-  setUserPassword,
-  setUserConfirmPassword,
-  addError,
-  removeError,
-} from '../../redux/reducers';
+import {useSelector} from 'react-redux';
+import {useAuthState} from './authorization.state';
 import {AuthStyles as Styled} from './authorization.styles';
+import {AUTH_MODE} from '../../constants/auth';
 
 export const Auth = () => {
   const {mail, password, confirmPassword, mode, inputError} = useSelector(
     (state: RootState) => state.auth,
   );
 
-  const dispatch = useDispatch();
+  const {changeConfirmPassword, changeMail, changePassword, selectTab} =
+    useAuthState();
 
-  const changeMail = (value: string) => {
-    dispatch(setUserEmail(value));
-  };
-  const changePassword = (value: string) => {
-    dispatch(setUserPassword(value));
-  };
-  const changeconfirmPassword = (value: string) => {
-    dispatch(setUserConfirmPassword(value));
-  };
-
-  const login = () => {
-    dispatch(setToken('login'));
-  };
-  const register = () => {
-    password === confirmPassword
-      ? dispatch(setToken('login'))
-      : console.log('error');
-  };
-
-  const selectTab = (newMode: string) => {
-    if (mode === newMode) {
-      return;
-    }
-    dispatch(changeMode(newMode));
-  };
-
-  const validateForm = () => {
-    if (mode === 'login' && password.length > 0) {
-      login();
-      return;
-    }
-    if (
-      password === confirmPassword &&
-      password.length > 0 &&
-      confirmPassword.length > 0
-    ) {
-      register();
-      return;
-    }
-    dispatch(addError());
-    setTimeout(() => dispatch(removeError()), 3000);
+  const handleChangeTab = (newMode: string) => {
+    selectTab(newMode, mode);
   };
 
   return (
     <View>
       <Styled.Logo source={PICTURES.logoIcon} />
-      <Tabs selectedMode={mode} changeTab={selectTab} />
-      {mode === 'login' ? (
+      <Tabs selectedMode={mode} onChangeTab={handleChangeTab} />
+      {mode === AUTH_MODE.LOGIN ? (
         <View>
           <Input
             placeholder="Enter email"
@@ -87,7 +42,7 @@ export const Auth = () => {
             isSecure={true}
             hasError={inputError}
           />
-          <Button title="Login" onPress={validateForm} />
+          <Button title="Login" onPress={() => {}} />
         </View>
       ) : (
         <View>
@@ -108,13 +63,13 @@ export const Auth = () => {
           />
           <Input
             placeholder="Confirm password"
-            onChangeText={changeconfirmPassword}
+            onChangeText={changeConfirmPassword}
             type={'eye'}
             value={confirmPassword}
             isSecure={true}
             hasError={inputError}
           />
-          <Button title="Register" onPress={validateForm} />
+          <Button title="Register" onPress={() => {}} />
         </View>
       )}
     </View>
