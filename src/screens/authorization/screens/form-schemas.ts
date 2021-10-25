@@ -18,9 +18,9 @@ export const signUpSchema = yup.object().shape({
     .required('Email Address is required'),
   password: yup
     .string()
-    .min(6, ({min}) => `Password must be at least ${min} characters`)
+    .min(6, ({min}) => `Password should be at least ${min} characters`)
     .required('Password is required'),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref('password'), null], 'Passwords must be a similar'),
+    .oneOf([yup.ref('password'), null], 'Passwords should be similar'),
 });
