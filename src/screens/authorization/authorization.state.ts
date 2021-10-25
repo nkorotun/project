@@ -1,5 +1,4 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {AUTH_MODE} from '../../constants/auth';
 import {
   changeMode,
   setToken,
@@ -9,6 +8,7 @@ import {
 } from '../../redux/reducers';
 
 import {RootState} from '../../redux/store';
+import {IResponce} from './authorization.types';
 
 export const useAuthState = () => {
   const {mode} = useSelector((state: RootState) => state.auth);
@@ -24,11 +24,13 @@ export const useAuthState = () => {
     dispatch(setUserConfirmPassword(value));
   };
 
-  const login = () => {
-    dispatch(setToken(AUTH_MODE.TOKEN));
+  const login = (userData: IResponce) => {
+    changeMail(userData.email);
+    dispatch(setToken(userData.access_token));
   };
-  const register = () => {
-    dispatch(setToken(AUTH_MODE.TOKEN));
+  const register = (userData: IResponce) => {
+    changeMail(userData.email);
+    dispatch(setToken(userData.access_token));
   };
   const selectTab = (newMode: string) => {
     if (mode === newMode) {

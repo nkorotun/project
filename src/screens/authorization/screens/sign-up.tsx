@@ -7,6 +7,7 @@ import {Button} from '../../../components/button';
 
 import {signUpSchema} from './form-schemas';
 import {ControllerInput} from '../../../components/input-controller/input-controller';
+import {IForm} from '../authorization.types';
 
 export const SignUp = () => {
   const {register} = useAuthState();
@@ -17,10 +18,21 @@ export const SignUp = () => {
     formState: {errors},
   } = useForm({resolver: yupResolver(signUpSchema)});
 
-  const onSubmit = () => {
-    register();
+  const onSubmit = async (body: IForm) => {
+    let url = 'http://localhost:3000/auth/sign-up';
+    let response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(body),
+    });
+    let data = await response.json();
+    if (data.statusCode >= 400) {
+      throw new Error('This email is already exist');
+    }
+    register(data);
   };
-
   return (
     <View>
       <ControllerInput

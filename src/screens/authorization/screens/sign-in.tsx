@@ -6,6 +6,7 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {signInSchema} from './form-schemas';
 import {ControllerInput} from '../../../components/input-controller/input-controller';
 import {Button} from '../../../components/button';
+import {IForm} from '../authorization.types';
 
 export const SignIn = () => {
   const {login} = useAuthState();
@@ -16,8 +17,20 @@ export const SignIn = () => {
     formState: {errors},
   } = useForm({resolver: yupResolver(signInSchema)});
 
-  const onSubmit = () => {
-    login();
+  const onSubmit = async (body: IForm) => {
+    let url = 'http://localhost:3000/auth/sign-in';
+    let response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(body),
+    });
+    let data = await response.json();
+    if (data.statusCode >= 400) {
+      throw new Error('Invalid email, or password');
+    }
+    login(data);
   };
 
   return (
