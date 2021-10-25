@@ -1,34 +1,43 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
-import {Input} from '../../../components/input';
-import {RootState} from '../../../redux/store';
-import {useSelector} from 'react-redux';
+import {View} from 'react-native';
 import {useAuthState} from './../authorization.state';
+import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {signInSchema} from './form-schemas';
+import {ControllerInput} from '../../../components/input-controller/input-controller';
+import {Button} from '../../../components/button';
 
-export const SignIn = ({navigation}) => {
-  const {mail, password, inputError} = useSelector(
-    (state: RootState) => state.auth,
-  );
-  const {changeMail, changePassword, login} = useAuthState();
+export const SignIn = () => {
+  const {login} = useAuthState();
+
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm({resolver: yupResolver(signInSchema)});
+
+  const onSubmit = () => {
+    login();
+  };
 
   return (
     <View>
-      <Input
-        placeholder="Enter email"
-        onChangeText={changeMail}
-        type={'mail'}
-        value={mail}
-        hasError={false}
+      <ControllerInput
+        control={control}
+        errors={errors}
+        name="email"
+        placeholder="Enter your email"
+        type="mail"
       />
-      <Input
-        placeholder="Enter password"
-        onChangeText={changePassword}
-        type={'eye'}
-        value={password}
+      <ControllerInput
+        control={control}
+        errors={errors}
+        name="password"
+        placeholder="Enter your password"
+        type="eye"
         isSecure={true}
-        hasError={inputError}
       />
-      <Button title="Login" onPress={login} />
+      <Button title="Login" onPress={handleSubmit(onSubmit)} />
     </View>
   );
 };

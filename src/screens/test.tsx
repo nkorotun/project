@@ -1,8 +1,9 @@
 import React from 'react';
-import {Text, Button, SafeAreaView} from 'react-native';
+import {Text, SafeAreaView} from 'react-native';
 import {useTestState} from './test.state';
+import {Button} from '../components/button';
 
-export const Test = ({navigation}) => {
+export const Test = () => {
   const {exit} = useTestState();
 
   return (

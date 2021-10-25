@@ -11,9 +11,9 @@ import {AUTH_MODE} from '../../constants/auth';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SignIn} from './screens/sign-in';
 import {SignUp} from './screens/sign-up';
-import { SCREENS } from '../../constants/screens';
+import {SCREENS} from '../../constants/screens';
 
-export const Auth = ({navigation}) => {
+export const Auth = () => {
   const Stack = createNativeStackNavigator();
 
   const {mode} = useSelector((state: RootState) => state.auth);
