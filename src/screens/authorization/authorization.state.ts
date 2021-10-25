@@ -14,22 +14,22 @@ export const useAuthState = () => {
   const {mode} = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
-  const changeMail = (value: string) => {
+  const setMail = (value: string) => {
     dispatch(setUserEmail(value));
   };
-  const changePassword = (value: string) => {
+  const setPassword = (value: string) => {
     dispatch(setUserPassword(value));
   };
-  const changeConfirmPassword = (value: string) => {
+  const setConfirmPassword = (value: string) => {
     dispatch(setUserConfirmPassword(value));
   };
 
-  const login = (userData: IResponce) => {
-    changeMail(userData.email);
+  const login = (userData: IResponce | any) => {
+    setMail(userData.email);
     dispatch(setToken(userData.access_token));
   };
-  const register = (userData: IResponce) => {
-    changeMail(userData.email);
+  const register = (userData: IResponce | any) => {
+    setMail(userData.email);
     dispatch(setToken(userData.access_token));
   };
   const selectTab = (newMode: string) => {
@@ -40,9 +40,9 @@ export const useAuthState = () => {
   };
 
   return {
-    changeMail,
-    changePassword,
-    changeConfirmPassword,
+    setMail,
+    setPassword,
+    setConfirmPassword,
     login,
     register,
     selectTab,

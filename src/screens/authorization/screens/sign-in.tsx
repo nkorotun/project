@@ -7,7 +7,8 @@ import {signInSchema} from './form-schemas';
 import {ControllerInput} from '../../../components/input-controller/input-controller';
 import {Button} from '../../../components/button';
 import {IForm} from '../authorization.types';
-import {SERVER_ADRESS} from './constants';
+import {SERVER_ADRESS} from '../constants';
+import {postData} from '../axios';
 
 export const SignIn = () => {
   const {login} = useAuthState();
@@ -19,19 +20,12 @@ export const SignIn = () => {
   } = useForm({resolver: yupResolver(signInSchema)});
 
   const onSubmit = async (body: IForm) => {
-    let url = SERVER_ADRESS.singIn;
-    let response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify(body),
-    });
-    let data = await response.json();
-    if (data.statusCode >= 400) {
-      throw new Error('Invalid email, or password');
+    try {
+      const responce = await postData(SERVER_ADRESS.singIn, body);
+      login(responce.data);
+    } catch (error) {
+      await Promise.reject(error);
     }
-    login(data);
   };
 
   return (
