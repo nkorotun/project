@@ -22,7 +22,6 @@ export const TabsStyles = {
     ${({selected}) =>
       `border-color:${selected ? COLORS.purple : COLORS.white};`}
   `,
-  Text: styled.Text``,
 };
 
 export const styles = StyleSheet.create({
