@@ -2,10 +2,10 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Auth} from './screens/authorization';
-import {Test} from './screens/test';
 import {useSelector} from 'react-redux';
 import {RootState} from './redux/store';
 import {SCREENS} from './constants/screens';
+import {BottomNavigation} from './components/navigation/navigation';
 
 const LocalStack = createNativeStackNavigator();
 
@@ -15,7 +15,7 @@ export const RootComponent = () => {
     <NavigationContainer>
       <LocalStack.Navigator screenOptions={{headerShown: false}}>
         {token ? (
-          <LocalStack.Screen name={SCREENS.homepage} component={Test} />
+          <LocalStack.Screen name={SCREENS.main} component={BottomNavigation} />
         ) : (
           <LocalStack.Screen name={SCREENS.auth} component={Auth} />
         )}

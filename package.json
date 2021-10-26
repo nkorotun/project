@@ -13,6 +13,7 @@
   "dependencies": {
     "@hookform/resolvers": "^2.8.2",
     "@react-native-async-storage/async-storage": "github:react-native-async-storage/async-storage",
+    "@react-navigation/bottom-tabs": "^5.11.15",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
     "@reduxjs/toolkit": "^1.6.2",
@@ -21,6 +22,9 @@
     "react-hook-form": "^7.17.5",
     "react-hook-form-resolvers": "^0.0.1",
     "react-native": "0.66.1",
+    "react-native-camera": "git+https://git@github.com/react-native-community/react-native-camera.git",
+    "react-native-image-crop-picker": "^0.36.4",
+    "react-native-image-picker": "3.3.2",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.8.0",
     "react-native-svg": "^12.1.1",

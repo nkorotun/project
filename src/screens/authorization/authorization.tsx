@@ -7,7 +7,6 @@ import {useSelector} from 'react-redux';
 import {useAuthState} from './authorization.state';
 import {AuthStyles as Styled} from './authorization.styles';
 import {AUTH_MODE} from '../../constants/auth';
-
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SignIn} from './screens/sign-in';
 import {SignUp} from './screens/sign-up';
@@ -17,7 +16,6 @@ export const Auth = () => {
   const Stack = createNativeStackNavigator();
 
   const {mode} = useSelector((state: RootState) => state.auth);
-
   const {selectTab} = useAuthState();
 
   return (

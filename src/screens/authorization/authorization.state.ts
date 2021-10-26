@@ -1,11 +1,12 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {
   changeMode,
+  logOut,
   setToken,
   setUserConfirmPassword,
   setUserEmail,
   setUserPassword,
-} from '../../redux/reducers';
+} from '../../redux/reducers/auth';
 
 import {RootState} from '../../redux/store';
 import {IResponce} from './authorization.types';
@@ -39,6 +40,10 @@ export const useAuthState = () => {
     dispatch(changeMode(newMode));
   };
 
+  const exit = () => {
+    dispatch(logOut());
+  };
+
   return {
     setMail,
     setPassword,
@@ -46,5 +51,6 @@ export const useAuthState = () => {
     login,
     register,
     selectTab,
+    exit,
   };
 };
