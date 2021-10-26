@@ -4,6 +4,7 @@ import {useTestState} from './test.state';
 import {Button} from '../components/button';
 import {RootState} from '../redux/store';
 import {useSelector} from 'react-redux';
+import {TestStyles as Styled} from './test.styles';
 
 export const Test = () => {
   const {exit} = useTestState();
@@ -11,8 +12,10 @@ export const Test = () => {
 
   return (
     <SafeAreaView>
-      <Text>Welcome, {mail}, this is test screen</Text>
-      <Button title="Exit" onPress={exit} />
+      <Styled.Wrapper>
+        <Text>Welcome, {mail}, this is test screen</Text>
+        <Button title="Exit" onPress={exit} />
+      </Styled.Wrapper>
     </SafeAreaView>
   );
 };
