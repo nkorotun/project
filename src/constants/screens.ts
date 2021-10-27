@@ -6,4 +6,5 @@ export const SCREENS = {
   home: 'Home',
   camera: 'Camera',
   profile: 'Profile',
+  map: 'Map',
 } as const;

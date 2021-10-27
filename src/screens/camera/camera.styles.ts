@@ -37,4 +37,8 @@ export const CameraStyles = {
     background-color: ${COLORS.black};
     z-index: 1;
   `,
+  Image: styled.Image`
+    width: 100%;
+    height: 100%;
+  `,
 };
