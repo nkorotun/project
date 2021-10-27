@@ -9,6 +9,7 @@ import lightning from '../../assets/icons/lightning.svg';
 import gallery from '../../assets/icons/gallery.svg';
 import reverse from '../../assets/icons/reverse.svg';
 import circle from '../../assets/icons/circle.svg';
+import map from '../../assets/icons/map.svg';
 
 export type TIconsName = keyof typeof ICONS;
 
@@ -24,4 +25,5 @@ export const ICONS: {[key: string]: any} = {
   gallery,
   reverse,
   circle,
+  map,
 };

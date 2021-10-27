@@ -10,6 +10,7 @@
 #import <FlipperKitUserDefaultsPlugin/FKUserDefaultsPlugin.h>
 #import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
+#import <GoogleMaps/GoogleMaps.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
 
 static void InitializeFlipper(UIApplication *application) {
@@ -27,6 +28,7 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [GMSServices provideAPIKey:@"_YOUR_API_KEY_"];
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif
