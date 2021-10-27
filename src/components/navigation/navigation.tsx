@@ -9,6 +9,7 @@ import {useNavigation} from '@react-navigation/core';
 import {SCREENS} from '../../constants/screens';
 import {Profile} from '../../screens/profile/profile';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {Map} from '../../screens/map/map';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,6 +23,7 @@ export const BottomNavigation = () => {
     {name: SCREENS.home, iconType: 'home', component: Home},
     {name: SCREENS.camera, iconType: 'camera', component: Camera},
     {name: SCREENS.profile, iconType: 'profile', component: Profile},
+    {name: SCREENS.map, iconType: 'map', component: Map},
   ];
 
   return (
