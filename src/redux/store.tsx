@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {persistReducer, persistStore} from 'redux-persist';
-import authReducer from './reducers';
+import authReducer from './reducers/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const persistConfig = {
@@ -9,11 +9,11 @@ const persistConfig = {
   storage: AsyncStorage,
 };
 
-const persistReduce = persistReducer(persistConfig, authReducer);
+const authReduce = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
-    auth: persistReduce,
+    auth: authReduce,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

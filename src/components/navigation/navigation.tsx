@@ -14,64 +14,39 @@ const Tab = createBottomTabNavigator();
 
 export const BottomNavigation = () => {
   const {navigate} = useNavigation<NativeStackNavigationProp<any>>();
-
   const onPress = (routeName: string) => () => {
     navigate(routeName);
   };
 
+  const screenSData = [
+    {name: SCREENS.home, iconType: 'home', component: Home},
+    {name: SCREENS.camera, iconType: 'camera', component: Camera},
+    {name: SCREENS.profile, iconType: 'profile', component: Profile},
+  ];
+
   return (
     <Tab.Navigator>
-      <Tab.Screen
-        name={SCREENS.home}
-        options={{
-          tabBarLabel: ({focused}) => (
-            <NavLabel title={SCREENS.home} selected={focused} />
-          ),
-          tabBarIcon: ({focused}) => (
-            <IconSVG
-              type="home"
-              size={24}
-              color={focused ? COLORS.purple : COLORS.gray}
-              onPress={onPress(SCREENS.home)}
-            />
-          ),
-        }}
-        component={Home}
-      />
-      <Tab.Screen
-        name={SCREENS.camera}
-        options={{
-          tabBarLabel: ({focused}) => (
-            <NavLabel title={SCREENS.camera} selected={focused} />
-          ),
-          tabBarIcon: ({focused}) => (
-            <IconSVG
-              type="camera"
-              size={24}
-              color={focused ? COLORS.purple : COLORS.gray}
-              onPress={onPress(SCREENS.camera)}
-            />
-          ),
-        }}
-        component={Camera}
-      />
-      <Tab.Screen
-        name={SCREENS.profile}
-        options={{
-          tabBarLabel: ({focused}) => (
-            <NavLabel title={SCREENS.profile} selected={focused} />
-          ),
-          tabBarIcon: ({focused}) => (
-            <IconSVG
-              type="profile"
-              size={24}
-              color={focused ? COLORS.purple : COLORS.gray}
-              onPress={onPress(SCREENS.profile)}
-            />
-          ),
-        }}
-        component={Profile}
-      />
+      {screenSData.map(screen => {
+        return (
+          <Tab.Screen
+            name={screen.name}
+            options={{
+              tabBarLabel: ({focused}) => (
+                <NavLabel title={screen.name} selected={focused} />
+              ),
+              tabBarIcon: ({focused}) => (
+                <IconSVG
+                  type={screen.iconType}
+                  size={24}
+                  color={focused ? COLORS.purple : COLORS.gray}
+                  onPress={onPress(screen.name)}
+                />
+              ),
+            }}
+            component={screen.component}
+          />
+        );
+      })}
     </Tab.Navigator>
   );
 };
