@@ -3,10 +3,10 @@ import {Text, SafeAreaView} from 'react-native';
 import {Button} from '../../components/button';
 import {RootState} from '../../redux/store';
 import {useSelector} from 'react-redux';
-import {useTestState} from '../test.state';
+import {useAuthState} from '../authorization/authorization.state';
 
 export const Home = () => {
-  const {exit} = useTestState();
+  const {exit} = useAuthState();
   const {mail} = useSelector((state: RootState) => state.auth);
 
   return (
