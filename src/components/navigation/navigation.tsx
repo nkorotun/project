@@ -1,15 +1,15 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Home} from '../../screens/home/home';
-import {Camera} from '../../screens/camera/camera';
+import {Home} from '../../screens/home';
+import {Camera} from '../../screens/camera';
 import {IconSVG} from '../icon/icon';
 import {COLORS} from '../../constants/colors';
 import {NavLabel} from './navigation-label/navigation-label';
 import {useNavigation} from '@react-navigation/core';
 import {SCREENS} from '../../constants/screens';
-import {Profile} from '../../screens/profile/profile';
+import {Profile} from '../../screens/profile';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {Map} from '../../screens/map/map';
+import {Map} from '../../screens/map';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,6 +31,7 @@ export const BottomNavigation = () => {
       {screenSData.map(screen => {
         return (
           <Tab.Screen
+            key={screen.name}
             name={screen.name}
             options={{
               tabBarLabel: ({focused}) => (

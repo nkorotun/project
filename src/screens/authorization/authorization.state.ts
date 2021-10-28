@@ -6,7 +6,7 @@ import {
   setUserConfirmPassword,
   setUserEmail,
   setUserPassword,
-} from '../../redux/reducers/auth';
+} from '../../redux/reducers/auth/authReducer';
 
 import {RootState} from '../../redux/store';
 import {IResponce} from './authorization.types';

@@ -1,44 +1,24 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import {RNCamera} from 'react-native-camera';
 import {IconSVG} from '../../components/icon/icon';
 import {COLORS} from '../../constants/colors';
 import {CameraStyles as Styled} from './camera.styles';
-import {
-  launchImageLibrary,
-  ImageLibraryOptions,
-} from 'react-native-image-picker';
+import {useCameraState} from './camera.state';
+import {RootState} from '../../redux/store';
+import {useSelector} from 'react-redux';
 
 export const Camera = () => {
-  const [flash, changeFlash] = useState(false);
-  const [cameraFrontMode, changeCameraFrontMode] = useState(false);
-
-  const setCameraMode = () => {
-    changeCameraFrontMode(!cameraFrontMode);
-  };
-  const setFlash = () => {
-    changeFlash(!flash);
-  };
-
+  const {flash, cameraFrontMode, photo} = useSelector(
+    (state: RootState) => state.camera,
+  );
+  const {setCameraMode, setFlash, openCropper, openGallery} = useCameraState();
   const cameraRef = useRef<RNCamera>(null);
-
-  const openGallery = () => {
-    const options: ImageLibraryOptions = {
-      mediaType: 'photo',
-      maxWidth: 400,
-      maxHeight: 800,
-      includeBase64: true,
-    };
-
-    launchImageLibrary(options, async res => {
-      return res.uri;
-    });
-  };
 
   const takePicture = async () => {
     if (cameraRef.current) {
-      const options = {quality: 0.5};
+      const options = {quality: 1};
       const data = await cameraRef.current?.takePictureAsync(options);
-      return data.uri;
+      openCropper(data.uri);
     }
   };
 
@@ -52,25 +32,29 @@ export const Camera = () => {
           onPress={setFlash}
         />
       </Styled.Top>
-      <Styled.Camera
-        ref={cameraRef}
-        type={
-          cameraFrontMode
-            ? RNCamera.Constants.Type.front
-            : RNCamera.Constants.Type.back
-        }
-        flashMode={
-          flash
-            ? RNCamera.Constants.FlashMode.on
-            : RNCamera.Constants.FlashMode.off
-        }
-        androidCameraPermissionOptions={{
-          title: 'Permission to use camera',
-          message: 'We need your permission to use your camera',
-          buttonPositive: 'Ok',
-          buttonNegative: 'Cancel',
-        }}
-      />
+      {photo ? (
+        <Styled.Image source={{uri: photo}} />
+      ) : (
+        <Styled.Camera
+          ref={cameraRef}
+          type={
+            cameraFrontMode
+              ? RNCamera.Constants.Type.front
+              : RNCamera.Constants.Type.back
+          }
+          flashMode={
+            flash
+              ? RNCamera.Constants.FlashMode.on
+              : RNCamera.Constants.FlashMode.off
+          }
+          androidCameraPermissionOptions={{
+            title: 'Permission to use camera',
+            message: 'We need your permission to use your camera',
+            buttonPositive: 'Ok',
+            buttonNegative: 'Cancel',
+          }}
+        />
+      )}
       <Styled.Bottom>
         <IconSVG
           type="gallery"
