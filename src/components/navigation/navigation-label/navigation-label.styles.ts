@@ -4,6 +4,6 @@ import {COLORS} from '../../../constants/colors';
 export const NavLabelStyles = {
   Text: styled.Text<{selected: true | false}>`
     font-size: 12px;
-    ${({selected}) => `color:${selected ? COLORS.purple : COLORS.gray};`}
+    ${({selected}) => `color:${selected ? COLORS.primary : COLORS.gray};`}
   `,
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, TouchableWithoutFeedback} from 'react-native';
+import {SafeAreaView, ScrollView, TouchableWithoutFeedback} from 'react-native';
 import {Tabs} from '../../components/tabs';
 import {RootState} from '../../redux/store';
 import {PICTURES} from '../../constants/pictures';
@@ -20,18 +20,20 @@ export const Auth = () => {
   const {selectTab} = useAuthState();
 
   return (
-    <SafeAreaView>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <Styled.Logo source={PICTURES.logoIcon} />
-      </TouchableWithoutFeedback>
-      <Tabs selectedMode={mode} onChangeTab={selectTab} />
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        {mode === AUTH_MODE.LOGIN ? (
-          <Stack.Screen name={SCREENS.signIn} component={SignIn} />
-        ) : (
-          <Stack.Screen name={SCREENS.signUp} component={SignUp} />
-        )}
-      </Stack.Navigator>
-    </SafeAreaView>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <ScrollView>
+        <SafeAreaView>
+          <Styled.Logo source={PICTURES.logoIcon} />
+          <Tabs selectedMode={mode} onChangeTab={selectTab} />
+          <Stack.Navigator screenOptions={{headerShown: false}}>
+            {mode === AUTH_MODE.LOGIN ? (
+              <Stack.Screen name={SCREENS.signIn} component={SignIn} />
+            ) : (
+              <Stack.Screen name={SCREENS.signUp} component={SignUp} />
+            )}
+          </Stack.Navigator>
+        </SafeAreaView>
+      </ScrollView>
+    </TouchableWithoutFeedback>
   );
 };

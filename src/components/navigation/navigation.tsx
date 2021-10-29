@@ -41,7 +41,7 @@ export const BottomNavigation = () => {
                 <IconSVG
                   type={screen.iconType}
                   size={24}
-                  color={focused ? COLORS.purple : COLORS.gray}
+                  color={focused ? COLORS.primary : COLORS.gray}
                   onPress={onPress(screen.name)}
                 />
               ),

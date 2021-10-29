@@ -6,27 +6,15 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {signInSchema} from './form-schemas';
 import {ControllerInput} from '../../../components/input-controller/input-controller';
 import {Button} from '../../../components/button';
-import {IForm} from '../authorization.types';
-import {SERVER_ADRESS} from '../constants';
-import {postData} from '../axios';
 
 export const SignIn = () => {
-  const {login} = useAuthState();
+  const {onSubmitSignIn} = useAuthState();
 
   const {
     control,
     handleSubmit,
     formState: {errors},
   } = useForm({resolver: yupResolver(signInSchema)});
-
-  const onSubmit = async (body: IForm) => {
-    try {
-      const responce = await postData(SERVER_ADRESS.singIn, body);
-      login(responce.data);
-    } catch (error) {
-      await Promise.reject(error);
-    }
-  };
 
   return (
     <View>
@@ -45,7 +33,7 @@ export const SignIn = () => {
         type="eye"
         isSecure={true}
       />
-      <Button title="Login" onPress={handleSubmit(onSubmit)} />
+      <Button title="Login" onPress={handleSubmit(onSubmitSignIn)} />
     </View>
   );
 };

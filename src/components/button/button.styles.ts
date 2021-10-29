@@ -3,16 +3,17 @@ import {BORDERS} from '../../constants/borders';
 import {COLORS} from '../../constants/colors';
 
 export const ButtonStyles = {
-  Button: styled.Pressable`
+  Button: styled.View<{color: string | undefined}>`
     display: flex;
     align-items: center;
     justify-content: center;
     max-width: 100%;
+    min-width: 35%;
     height: 40px;
-    padding: 0 16px;
+    padding: 0 15px;
     margin: 10px 25px;
     border-radius: ${BORDERS.radius * 2}px;
-    background-color: ${COLORS.purple};
+    ${({color}) => `background-color:${color ? color : COLORS.primary};`}
   `,
   Text: styled.Text`
     font-size: 16px;

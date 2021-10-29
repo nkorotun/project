@@ -6,7 +6,7 @@ import {IContollerInput} from './input-controller.types';
 import {ControlInputStyles as Styled} from './input-controller.styles';
 
 export const ControllerInput: FC<IContollerInput> = props => {
-  const {control, errors, name, placeholder, type, isSecure} = props;
+  const {control, errors, name, disabled, placeholder, type, isSecure} = props;
 
   return (
     <View>
@@ -21,6 +21,7 @@ export const ControllerInput: FC<IContollerInput> = props => {
             type={type}
             isSecure={isSecure}
             hasError={Boolean(errors[name])}
+            disabled={disabled}
           />
         )}
         name={name}
