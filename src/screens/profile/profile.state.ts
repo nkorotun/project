@@ -1,14 +1,13 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {
-  editName,
-  editSurname,
   changeEditMode,
   changeName,
   changeSurname,
+  setPhoto,
 } from '../../redux/reducers/profile/porfileReducer';
 import {RootState} from '../../redux/store';
-import {putData} from '../authorization/axios';
-import {SERVER_ADRESS} from '../authorization/constants';
+import {getData, putData} from '../authorization/axios';
+import {SERVER_ADRESS} from '../../constants/auth';
 import {IForm} from './profile.types';
 
 export const useProfileState = () => {
@@ -16,12 +15,6 @@ export const useProfileState = () => {
 
   const dispatch = useDispatch();
 
-  const setName = (value: string) => {
-    dispatch(editName(value));
-  };
-  const setSurname = (value: string) => {
-    dispatch(editSurname(value));
-  };
   const setEditMode = () => {
     dispatch(changeEditMode());
   };
@@ -29,7 +22,22 @@ export const useProfileState = () => {
   const setProfileData = (data: IForm) => {
     dispatch(changeName(data.name));
     dispatch(changeSurname(data.surname));
-    setEditMode();
+  };
+
+  const setAvatar = (image: string) => {
+    dispatch(setPhoto(image));
+  };
+
+  const updateUserAvatar = async (photo: string) => {
+    const body = {
+      image: photo,
+    };
+    try {
+      const responce = await putData(`${SERVER_ADRESS.user}/${id}`, body);
+      setAvatar(responce.data.image);
+    } catch (error) {
+      await Promise.reject(error);
+    }
   };
 
   const updateUserData = async (newData: IForm) => {
@@ -40,10 +48,26 @@ export const useProfileState = () => {
     try {
       const responce = await putData(`${SERVER_ADRESS.user}/${id}`, body);
       setProfileData(responce.data);
+      setEditMode();
+    } catch (error) {
+      await Promise.reject(error);
+    }
+  };
+  const checkData = async () => {
+    try {
+      const responce = await getData(`${SERVER_ADRESS.user}/${id}`, '');
+      setProfileData(responce.data);
+      setAvatar(responce.data.image);
     } catch (error) {
       await Promise.reject(error);
     }
   };
 
-  return {setName, setSurname, setEditMode, updateUserData};
+  return {
+    setEditMode,
+    updateUserData,
+    checkData,
+    updateUserAvatar,
+    setAvatar,
+  };
 };

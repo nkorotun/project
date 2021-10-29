@@ -10,9 +10,12 @@ import {
   changePhoto,
   reset,
 } from '../../redux/reducers/camera/cameraReducer';
+import {useProfileState} from '../profile/profile.state';
 
 export const useCameraState = () => {
   const dispatch = useDispatch();
+
+  const {updateUserAvatar} = useProfileState();
 
   const setCameraMode = () => {
     dispatch(changeCameraFrontMode());
@@ -23,11 +26,8 @@ export const useCameraState = () => {
   const setPhoto = (image: string) => {
     dispatch(changePhoto(image));
   };
-  const displayImage = (image: string) => {
-    setPhoto(image);
-    setTimeout(() => {
-      setPhoto('');
-    }, 5000);
+  const loadImage = (image: any) => {
+    updateUserAvatar(image);
   };
   const refresh = () => {
     dispatch(reset);
@@ -39,9 +39,10 @@ export const useCameraState = () => {
       path: imageURL,
       width: 300,
       height: 400,
+      includeBase64: true,
       cropping: true,
     });
-    image ? displayImage(image.path) : null;
+    image ? loadImage(image.data) : null;
   };
 
   const openGallery = () => {
@@ -61,7 +62,7 @@ export const useCameraState = () => {
     setCameraMode,
     setFlash,
     setPhoto,
-    displayImage,
+    loadImage,
     openGallery,
     openCropper,
     refresh,
