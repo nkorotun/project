@@ -7,27 +7,15 @@ import {Button} from '../../../components/button';
 
 import {signUpSchema} from './form-schemas';
 import {ControllerInput} from '../../../components/input-controller/input-controller';
-import {IForm} from '../authorization.types';
-import {SERVER_ADRESS} from '../constants';
-import {postData} from '../axios';
 
 export const SignUp = () => {
-  const {register} = useAuthState();
+  const {onSubmitSignUp} = useAuthState();
 
   const {
     control,
     handleSubmit,
     formState: {errors},
   } = useForm({resolver: yupResolver(signUpSchema)});
-
-  const onSubmit = async (body: IForm) => {
-    try {
-      const responce = await postData(SERVER_ADRESS.signUp, body);
-      register(responce.data);
-    } catch (error) {
-      await Promise.reject(error);
-    }
-  };
 
   return (
     <View>
@@ -55,7 +43,7 @@ export const SignUp = () => {
         isSecure={true}
       />
 
-      <Button title="Register" onPress={handleSubmit(onSubmit)} />
+      <Button title="Register" onPress={handleSubmit(onSubmitSignUp)} />
     </View>
   );
 };

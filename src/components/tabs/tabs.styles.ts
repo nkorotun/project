@@ -20,7 +20,7 @@ export const TabsStyles = {
     background-color: ${COLORS.white};
     border-bottom-width: ${BORDERS.width}px;
     ${({selected}) =>
-      `border-color:${selected ? COLORS.purple : COLORS.white};`}
+      `border-color:${selected ? COLORS.primary : COLORS.white};`}
   `,
   Text: styled.Text``,
 };

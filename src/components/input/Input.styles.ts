@@ -8,19 +8,24 @@ export const InputStyles = {
     width: 90%;
     overflow: hidden;
   `,
-  InputWrapper: styled.View<{hasError: true | false}>`
+  InputWrapper: styled.View<{hasError: true | false; disabled: true | false}>`
+    border-width: ${BORDERS.width}px;
+    border-radius: ${BORDERS.radius}px;
+    border-color: ${COLORS.gray};
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     max-width: 100%;
-    height: 40px;
-    padding: 0 16px;
+    height: 50px;
     margin: 10px 25px;
+    padding: 0px 12px;
     border-width: ${BORDERS.width}px;
     border-radius: ${BORDERS.radius}px;
-    background-color: ${COLORS.white};
     ${({hasError}) => `border-color:${hasError ? COLORS.red : COLORS.gray};`}
+    ${({disabled}) =>
+      `background-color:${disabled ? COLORS.gray : COLORS.white};
+        color: ${disabled ? COLORS.darkGray : COLORS.black};`}
   `,
 };
 

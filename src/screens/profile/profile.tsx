@@ -1,15 +1,23 @@
 import React from 'react';
-import {Text, SafeAreaView} from 'react-native';
+import {SafeAreaView, ScrollView} from 'react-native';
 import {RootState} from '../../redux/store';
 import {useSelector} from 'react-redux';
+import {PICTURES} from '../../constants/pictures';
+import {ProfileStyles as Styled} from './profile.styles';
+import {ViewProfile} from './screens/profile-view';
+import {EditProfile} from './screens/profile-edit';
 
 export const Profile = () => {
-  const {mail} = useSelector((state: RootState) => state.auth);
+  const {editMode} = useSelector((state: RootState) => state.profile);
 
   return (
-    <SafeAreaView>
-      <Text>Welcome, to profile page.</Text>
-      <Text>Your Email: {mail}</Text>
-    </SafeAreaView>
+    <ScrollView>
+      <SafeAreaView>
+        <Styled.AvatarBox>
+          <Styled.Avatar source={PICTURES.user} />
+        </Styled.AvatarBox>
+        {editMode ? <EditProfile /> : <ViewProfile />}
+      </SafeAreaView>
+    </ScrollView>
   );
 };

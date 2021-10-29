@@ -1,11 +1,12 @@
 import {TIconNames} from '../icon/icon';
 
 export interface IInput {
-  placeholder: string;
+  placeholder?: string;
   value: string;
   isSecure?: boolean;
-  onChangeText: (value: string) => void;
+  onChangeText?: (value: string) => void;
   onBlur?: () => void;
-  type: TIconNames;
+  type?: TIconNames;
   hasError?: boolean;
+  disabled?: boolean;
 }

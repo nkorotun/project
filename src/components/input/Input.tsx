@@ -5,11 +5,19 @@ import {IconSVG} from '../icon/icon';
 import {COLORS} from '../../constants/colors';
 
 export const Input: FC<IInput> = props => {
-  const {onBlur, placeholder, value, isSecure, onChangeText, type, hasError} =
-    props;
+  const {
+    onBlur,
+    placeholder,
+    value,
+    disabled,
+    isSecure,
+    onChangeText,
+    type,
+    hasError,
+  } = props;
 
   return (
-    <Styled.InputWrapper hasError={hasError}>
+    <Styled.InputWrapper hasError={hasError} disabled={disabled}>
       <Styled.Input
         onBlur={onBlur}
         value={value}
@@ -17,11 +25,15 @@ export const Input: FC<IInput> = props => {
         placeholder={placeholder}
         secureTextEntry={isSecure}
       />
-      <IconSVG
-        type={type}
-        size={24}
-        color={hasError ? COLORS.red : COLORS.gray}
-      />
+      {type ? (
+        <IconSVG
+          type={type}
+          size={24}
+          color={hasError ? COLORS.red : COLORS.gray}
+        />
+      ) : (
+        <></>
+      )}
     </Styled.InputWrapper>
   );
 };

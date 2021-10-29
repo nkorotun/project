@@ -7,4 +7,5 @@ export interface IContollerInput {
   placeholder: string;
   type: string;
   isSecure?: boolean;
+  disabled?: boolean;
 }
