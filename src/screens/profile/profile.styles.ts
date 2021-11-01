@@ -1,4 +1,3 @@
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
 
