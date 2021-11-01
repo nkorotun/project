@@ -10,12 +10,17 @@ import {SCREENS} from '../../constants/screens';
 import {Profile} from '../../screens/profile';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Map} from '../../screens/map';
+import {useProfileState} from '../../screens/profile/profile.state';
 
 const Tab = createBottomTabNavigator();
 
 export const BottomNavigation = () => {
+  const {checkData} = useProfileState();
+
   const {navigate} = useNavigation<NativeStackNavigationProp<any>>();
+
   const onPress = (routeName: string) => () => {
+    routeName === SCREENS.profile ? checkData() : null;
     navigate(routeName);
   };
 

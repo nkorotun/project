@@ -13,7 +13,7 @@ import {setUserInfo} from '../../redux/reducers/profile/porfileReducer';
 import {RootState} from '../../redux/store';
 import {IForm, IResponce} from './authorization.types';
 import {getData, postData} from './axios';
-import {SERVER_ADRESS} from './constants';
+import {SERVER_ADRESS} from '../../constants/auth';
 
 export const useAuthState = () => {
   const {mode} = useSelector((state: RootState) => state.auth);

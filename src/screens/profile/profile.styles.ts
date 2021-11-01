@@ -1,3 +1,4 @@
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
 
@@ -26,5 +27,10 @@ export const ProfileStyles = {
     flex: 1;
     flex-direction: row;
     justify-content: space-between;
+  `,
+  IconAdd: styled.TouchableOpacity`
+    position: absolute;
+    right: 0;
+    bottom: 0;
   `,
 };

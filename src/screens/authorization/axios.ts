@@ -1,5 +1,5 @@
 import axios, {AxiosPromise} from 'axios';
-import {SERVER_ADRESS} from './constants';
+import {SERVER_ADRESS} from '../../constants/auth';
 import {store} from '../../redux/store';
 
 export type IResponse<T> = AxiosPromise<T>;
