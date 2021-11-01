@@ -11,6 +11,8 @@ import {COLORS} from '../../constants/colors';
 import {SCREENS} from '../../constants/screens';
 import {useNavigation} from '@react-navigation/core';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useAuthState} from '../authorization/authorization.state';
+import { Button } from '../../components/button';
 
 export const Profile = () => {
   const {editMode, image} = useSelector((state: RootState) => state.profile);
@@ -19,6 +21,7 @@ export const Profile = () => {
   const openCamera = () => {
     navigate(SCREENS.camera);
   };
+  const {exit} = useAuthState();
   return (
     <ScrollView>
       <SafeAreaView>
@@ -38,6 +41,7 @@ export const Profile = () => {
           </Styled.IconAdd>
         </Styled.AvatarBox>
         {editMode ? <EditProfile /> : <ViewProfile />}
+        <Button title="Exit" color={COLORS.black} onPress={exit} />
       </SafeAreaView>
     </ScrollView>
   );

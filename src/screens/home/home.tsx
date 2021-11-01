@@ -1,15 +1,29 @@
 import React from 'react';
-import {Text, SafeAreaView} from 'react-native';
+import {SafeAreaView, StatusBar, ScrollView} from 'react-native';
 import {Button} from '../../components/button';
-import {useAuthState} from '../authorization/authorization.state';
+import {useHomeState} from './home.state';
+import {HomeStyles as Styled} from './home.styles';
+import {News} from './news/news';
+import {Weather} from './weather/weather';
 
 export const Home = () => {
-  const {exit} = useAuthState();
+  const {loadNews, loadWeather} = useHomeState();
+
+  const loadData = () => {
+    loadNews();
+    loadWeather();
+  };
 
   return (
-    <SafeAreaView>
-      <Text>Welcome, Home, comandor.</Text>
-      <Button title="Exit" onPress={exit} />
-    </SafeAreaView>
+    <ScrollView>
+      <Styled.Container>
+        <StatusBar />
+        <SafeAreaView>
+          <Weather />
+          <News />
+          <Button onPress={loadData} title="Load News and Weather" />
+        </SafeAreaView>
+      </Styled.Container>
+    </ScrollView>
   );
 };

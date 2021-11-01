@@ -18,7 +18,7 @@ export const CameraStyles = {
     flex: 1;
     flex-direction: row-reverse;
     width: 100%;
-    padding: 15px 20px;
+    padding: 30px 20px 15px;
     top: 0;
     left: 0;
     background-color: ${COLORS.black};
